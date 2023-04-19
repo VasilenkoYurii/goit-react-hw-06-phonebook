@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Formik } from 'formik';
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { addContact } from 'redux/contactsSlice/contactsSlice';
 import { MainForm, Label, Input, Button } from './ContactForm.styled';
@@ -23,7 +22,6 @@ function ContactForm() {
       name: name,
       number: number,
     };
-    console.log(userObj);
     dispatch(addContact(userObj));
     setName('');
     setNamber('');
@@ -62,9 +60,5 @@ function ContactForm() {
     </Formik>
   );
 }
-
-ContactForm.prototype = {
-  onSubmit: PropTypes.func.isRequired,
-};
 
 export default ContactForm;
