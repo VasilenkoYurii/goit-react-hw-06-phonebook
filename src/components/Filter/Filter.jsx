@@ -1,20 +1,21 @@
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { SearchLabel, SearchInput } from './Filter.styled';
+import { changeFilter } from 'redux/filterSlice/filterSlice';
 
-const Filter = ({ onChangeFind, value }) => (
-  <SearchLabel>
-    Find contscts by name
-    <SearchInput
-      type="text"
-      value={value}
-      onChange={onChangeFind}
-    ></SearchInput>
-  </SearchLabel>
-);
+const Filter = () => {
+  const dispatch = useDispatch();
 
-Filter.propTypes = {
-  onChangeFind: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
+  return (
+    <SearchLabel>
+      Find contscts by name
+      <SearchInput
+        type="text"
+        onChange={e => {
+          dispatch(changeFilter(e.target.value));
+        }}
+      ></SearchInput>
+    </SearchLabel>
+  );
 };
 
 export default Filter;

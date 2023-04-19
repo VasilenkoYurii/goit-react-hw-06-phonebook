@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/contactsSlice/contactsSlice';
 import { MainForm, Label, Input, Button } from './ContactForm.styled';
 
-function ContactForm({ onSubmit }) {
+function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNamber] = useState('');
+
+  const dispatch = useDispatch();
 
   const onChange = e => {
     e.currentTarget.name === 'name'
@@ -20,7 +24,7 @@ function ContactForm({ onSubmit }) {
       number: number,
     };
     console.log(userObj);
-    onSubmit(userObj);
+    dispatch(addContact(userObj));
     setName('');
     setNamber('');
   };
